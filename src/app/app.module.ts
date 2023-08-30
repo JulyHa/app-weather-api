@@ -13,7 +13,11 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { IndexPageComponent } from './pages/index-page/index-page.component';
 import { MenubarModule } from 'primeng/menubar';
-
+import { CardModule } from 'primeng/card';
+import { DropdownModule } from 'primeng/dropdown';
+import { AdminComponent } from './pages/admin/admin.component';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +27,7 @@ import { MenubarModule } from 'primeng/menubar';
     LoginPageComponent,
     RegisterPageComponent,
     IndexPageComponent,
+    AdminComponent,
     
   ],
   imports: [
@@ -32,6 +37,10 @@ import { MenubarModule } from 'primeng/menubar';
     InputTextModule,
     ButtonModule,
     MenubarModule,
+    CardModule,
+    DropdownModule,
+    PanelMenuModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

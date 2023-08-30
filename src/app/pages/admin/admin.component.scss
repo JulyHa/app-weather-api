@@ -1,0 +1,30 @@
+.panel-menu {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .panel-menu-item {
+    border-top: 1px solid #ccc;
+    padding: 10px;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .sub-menu {
+    display: none;
+    list-style: none;
+    padding-left: 20px;
+  }
+  
+//   .panel-menu-item:hover .sub-menu {
+//     display: block;
+//   }
+  
+//   .sub-menu li {
+//     padding: 5px 0;
+//   }
+  
+//   .panel-menu-item:hover {
+//     background-color: #f0f0f0;
+//   }
+  

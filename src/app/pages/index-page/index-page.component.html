@@ -1,39 +1,169 @@
-<div class="card">
-  <div class="menu grid">
-    <div class="col-3">
-      <img
-        src="../../../assets/img/icon-menu.png"
-        alt="Icon cloud"
-        class="icon-menu"
-      />
-    </div>
-    <div class="col-8">
-      <span class="p-input-icon-left">
-        <i class="pi pi-search"></i>
-        <input
-          class="search-input"
-          type="text"
-          pInputText
-          placeholder="Search..."
+<div class="main">
+  <div class="card">
+    <div class="menu grid">
+      <div class="col-3 menu-icon">
+        <img
+          src="../../../assets/img/icon-menu.png"
+          alt="Icon cloud"
+          class="icon"
         />
-      </span>
-    </div>
-    <div class="col-1">
-      <a routerLink="/login">Login</a>|
-      <a routerLink="/register">Register</a>
+      </div>
+      <div class="col-6 menu-search">
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input
+            class="search-input"
+            type="text"
+            pInputText
+            placeholder="Search..."
+          />
+        </span>
+      </div>
+      <div class="col-3 menu-login">
+        <a routerLink="/login">Login</a>|
+        <a routerLink="/register">Register</a>
+      </div>
     </div>
   </div>
-</div>
 
-<div style="width: 80%; margin-left: 10%;">
-<div class="grid m-1" >
-    <div class="col-8 p-0" style="background-color: aquamarine;">
-        <div style="height: 300px; background-color: rgba(0, 0, 0, 0.048);"></div>
-        <div style="height: 600px; background-color: rgba(175, 120, 120, 0.411);"></div>
+  <div class="body w-8 m-0-auto">
+    <div class="grid m-1">
+      <div class="col-8 p-0">
+        <div>
+          <div class="border-round-sm  body-page1">
+              <div class="border-round-sm title-page1">
+                <p class="text-xl pt-1 pl-3" ><b>Hà Nội</b> Kể từ 9:40 GMT+07:00</p>
+              </div>
+            <div class="grid ml-2">
+              <div class="col-7 text-xl">
+                <b class="text-8xl">31&deg;</b>
+                <div>Khá</div>
+                <b>Ngày 32&deg;C - Đêm&deg;C</b>
+              </div>
+              <div class="col-5 h-13rem">
+                <img
+                  src="../../../assets/img/moon.png"
+                  alt="Ảnh mây"
+                  class="page1-img"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="mt-3 border-1 border-500" style="background-color: white;" >
+            <div >
+              <p class="m-3 text-xl"><span class="font-bold">Thời tiết hàng giờ</span> - Hà Nội</p>
+              <hr>
+              <b class="m-3">Thứ Tư, 30 tháng 8 năm 2023</b>
+              <ul class="panel-menu">
+                <li class="panel-menu-item">
+                    <div class="grid m-0 p-0" style="text-align: center;"> 
+                        <div class="col-2"><span>15:00</span></div>
+                        <div class="col-1"><span>33&deg;</span></div>
+                        <div class="col-4"><span>🌤️ Trời nắng</span></div>
+                        <div class="col-1"><span>💧0%</span></div>
+                        <div class="col-4"><span>💨 ĐB 14km/h</span></div>
+                      </div>
+                  <ul class="sub-menu">
+                    <li>
+                        <div class="border-500 border-1 border-round-sm">
+                            <div class="grid">
+                                <div class="col-4">
+                                    <div class="grid">
+                                        <div class="col-3">
+                                          <div class="card-img">
+                                            <img src="" alt="">
+                                          </div>
+                                        </div>
+                                        <div class="col-9">
+                                            <div>Cảm giác như</div>
+                                            <b>29&deg;</b>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4"> 
+                                    <div class="grid">
+                                        <div class="col-3 item-img">Ảnh</div>
+                                        <div class="col-9">
+                                            <div>Gió</div>
+                                            <b>BTB 6 km/h</b>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4"> 
+                                    <div class="grid">
+                                        <div class="col-3 item-img">Ảnh</div>
+                                        <div class="col-9">
+                                            <div>Độ ẩm</div>
+                                            <b>74%</b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr width="80%">
+                            <div class="grid">
+                                <div class="col-4">
+                                    <div class="grid">
+                                        <div class="col-3 item-img">Ảnh</div>
+                                        <div class="col-9">
+                                            <div>Chỉ số UV</div>
+                                            <b>0 / 11</b>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="grid">
+                                        <div class="col-3 item-img">Ảnh</div>
+                                        <div class="col-9">
+                                            <div>Mây che phủ</div>
+                                            <b>21%</b>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="grid">
+                                        <div class="col-3 item-img">Ảnh</div>
+                                        <div class="col-9">
+                                            <div>Lượng mưa</div>
+                                            <b>0cm</b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-3 p-0 m-3">
+        <p-card header="CHỈ SỐ CH.LƯỢNG KH.KHÍ">
+          <p class="m-0">
+          <div class="grid">
+            <div class = "col-3"> Ảnh</div>
+            <div class="col-9"> 
+              <b>Trung bình</b>
+              <p>Chất lượng không khí có thể chấp nhận được; 
+                tuy nhiên đối với một số chất gây ô nhiễm, 
+                có thể hơi có vấn đề về sức khỏe đối với một số rất ít những người nhạy cảm bất thường đối với ô nhiễm không khí.</p>
+            </div>
+          </div>
+        </p-card>
+        <p-card header="Sức khỏe & Hoạt động" class="m-1 p-0">
+          <p class="m-0">
+          <div class="grid p-0" >
+            <div class = "col-3"> Ảnh</div>
+            <div class="col-9"> 
+              <b>Dự báo</b>
+              <p>Thời tiết rất tốt để hoạt động thể dục ngoài trời...</p>
+            </div>
+          </div>
+        </p-card>
+      </div>
     </div>
-    <div class="col-4 p-0" style="background-color: antiquewhite;">
-        <div style="background-color: rgba(219, 116, 116, 0.034); height:400px"></div>
-        <div style="background-color: rgba(166, 255, 0, 0.075); height:400px"></div>
-    </div>
-</div>
+  </div>
 </div>
