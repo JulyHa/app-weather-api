@@ -1,7 +1,7 @@
 <div class="main">
   <div class="card">
     <div class="menu grid">
-      <div class="col-3 menu-icon">
+      <div class="col-3 menu-icon" [routerLink]="['/']">
         <img
           src="../../../assets/img/icon-menu.png"
           alt="Icon cloud"
@@ -16,34 +16,35 @@
             type="text"
             pInputText
             placeholder="Search..."
+            [(ngModel)] = 'citySearch' (keydown.enter)="runApp()"
           />
         </span>
       </div>
       <div class="col-3 menu-login">
-        <a routerLink="/login">Login</a>|
-        <a routerLink="/register">Register</a>
+        <p-button [routerLink]="['/login']">Login</p-button>
       </div>
     </div>
   </div>
 
+ 
   <div class="body w-8 m-0-auto">
+    <div class="mt-3"><p-button [routerLink]="['/']">Quay về</p-button></div>
     <div class="grid m-1">
       <div class="col-8 p-0">
         <div>
           <div class="border-round-sm  body-page1">
               <div class="border-round-sm title-page1">
-                <p class="text-xl pt-1 pl-3" ><b>Hà Nội</b> Kể từ 9:40 GMT+07:00</p>
+                <p class="text-xl pt-1 pl-3" ><b>{{local[0].local_names['vi']}} - {{currentWeather.dt*1000 | date: 'medium'}}</b>
               </div>
             <div class="grid ml-2">
               <div class="col-7 text-xl">
-                <b class="text-8xl">31&deg;</b>
-                <div>Khá</div>
-                <b>Ngày 32&deg;C - Đêm&deg;C</b>
+                <b class="text-8xl">{{(currentWeather.main.temp - 273.15 | number: '1.0-0')}}&deg;</b>
+                <div>{{currentWeather.weather[0].description | titlecase}}</div>
               </div>
               <div class="col-5 h-13rem">
                 <img
-                  src="../../../assets/img/moon.png"
-                  alt="Ảnh mây"
+                  src="https://openweathermap.org/img/wn/{{currentWeather.weather[0].icon}}.png"
+                  alt="Ảnh"
                   class="page1-img"
                 />
               </div>
@@ -53,89 +54,13 @@
         <div>
           <div class="mt-3 border-1 border-500" style="background-color: white;" >
             <div >
-              <p class="m-3 text-xl"><span class="font-bold">Thời tiết hàng giờ</span> - Hà Nội</p>
-              <hr>
-              <b class="m-3">Thứ Tư, 30 tháng 8 năm 2023</b>
-              <ul class="panel-menu">
-                <li class="panel-menu-item">
-                    <div class="grid m-0 p-0" style="text-align: center;"> 
-                        <div class="col-2"><span>15:00</span></div>
-                        <div class="col-1"><span>33&deg;</span></div>
-                        <div class="col-4"><span>🌤️ Trời nắng</span></div>
-                        <div class="col-1"><span>💧0%</span></div>
-                        <div class="col-4"><span>💨 ĐB 14km/h</span></div>
-                      </div>
-                  <ul class="sub-menu">
-                    <li>
-                        <div class="border-500 border-1 border-round-sm">
-                            <div class="grid">
-                                <div class="col-4">
-                                    <div class="grid">
-                                        <div class="col-3">
-                                          <div class="card-img">
-                                            <img src="" alt="">
-                                          </div>
-                                        </div>
-                                        <div class="col-9">
-                                            <div>Cảm giác như</div>
-                                            <b>29&deg;</b>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-4"> 
-                                    <div class="grid">
-                                        <div class="col-3 item-img">Ảnh</div>
-                                        <div class="col-9">
-                                            <div>Gió</div>
-                                            <b>BTB 6 km/h</b>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-4"> 
-                                    <div class="grid">
-                                        <div class="col-3 item-img">Ảnh</div>
-                                        <div class="col-9">
-                                            <div>Độ ẩm</div>
-                                            <b>74%</b>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr width="80%">
-                            <div class="grid">
-                                <div class="col-4">
-                                    <div class="grid">
-                                        <div class="col-3 item-img">Ảnh</div>
-                                        <div class="col-9">
-                                            <div>Chỉ số UV</div>
-                                            <b>0 / 11</b>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="grid">
-                                        <div class="col-3 item-img">Ảnh</div>
-                                        <div class="col-9">
-                                            <div>Mây che phủ</div>
-                                            <b>21%</b>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="grid">
-                                        <div class="col-3 item-img">Ảnh</div>
-                                        <div class="col-9">
-                                            <div>Lượng mưa</div>
-                                            <b>0cm</b>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
+              <p class="m-3 text-xl"><span class="font-bold">Thời tiết trong ngày</span> - {{local[0].local_names['vi']}}</p>
+              <div *ngFor="let itemValue of item; let vtri = index">
+                <hr *ngIf="itemValue.check">
+                <b *ngIf="itemValue.check" class="m-3">{{itemValue.value.dt * 1000 | date: 'fullDate'}}</b>
+                <app-item-page [current] = 'currentWeather' [hourly] = 'itemValue' [index] = 'index'></app-item-page>
+              </div>
+              
             </div>
           </div>
         </div>
@@ -144,7 +69,9 @@
         <p-card header="CHỈ SỐ CH.LƯỢNG KH.KHÍ">
           <p class="m-0">
           <div class="grid">
-            <div class = "col-3"> Ảnh</div>
+            <div class = "col-3">
+              <img style="height: 40px; width: 60px;" src="../../../assets/img/CLKK.png" alt="Biều đồ đo chất lượng k.khí">
+            </div>
             <div class="col-9"> 
               <b>Trung bình</b>
               <p>Chất lượng không khí có thể chấp nhận được; 
@@ -156,7 +83,9 @@
         <p-card header="Sức khỏe & Hoạt động" class="m-1 p-0">
           <p class="m-0">
           <div class="grid p-0" >
-            <div class = "col-3"> Ảnh</div>
+            <div class = "col-3">
+              <img style="height: 40px; width: 60px;" src="../../../assets/img/du-bao.jpg" alt="Hoạt động">
+            </div>
             <div class="col-9"> 
               <b>Dự báo</b>
               <p>Thời tiết rất tốt để hoạt động thể dục ngoài trời...</p>

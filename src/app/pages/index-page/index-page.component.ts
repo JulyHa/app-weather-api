@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { ActivatedRoute } from '@angular/router';
+import { Weather } from 'src/app/model/weather';
+import { WeatherService } from 'src/app/services/weather.service';
+import { __values } from 'tslib';
 
 @Component({
   selector: 'app-index-page',
@@ -7,132 +10,74 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./index-page.component.scss']
 })
 export class IndexPageComponent implements OnInit {
-  items: MenuItem[] | undefined;
+  currentWeather: any;
+  local: any;
+  weatherHourly: any;
+  item: Weather[] = [];
+  citySearch: string = '';
+  lat: number;
+  lon: number;
 
+
+  constructor(private weatherService: WeatherService, private route: ActivatedRoute) {
+  }
   ngOnInit(): void {
-    this.items = [
-      {
-          label: 'File',
-          icon: 'pi pi-fw pi-file',
-          items: [
-              {
-                  label: 'New',
-                  icon: 'pi pi-fw pi-plus',
-                  items: [
-                      {
-                          label: 'Bookmark',
-                          icon: 'pi pi-fw pi-bookmark'
-                      },
-                      {
-                          label: 'Video',
-                          icon: 'pi pi-fw pi-video'
-                      }
-                  ]
-              },
-              {
-                  label: 'Delete',
-                  icon: 'pi pi-fw pi-trash'
-              },
-              {
-                  separator: true
-              },
-              {
-                  label: 'Export',
-                  icon: 'pi pi-fw pi-external-link'
-              }
-          ]
-      },
-      {
-          label: 'Edit',
-          icon: 'pi pi-fw pi-pencil',
-          items: [
-              {
-                  label: 'Left',
-                  icon: 'pi pi-fw pi-align-left'
-              },
-              {
-                  label: 'Right',
-                  icon: 'pi pi-fw pi-align-right'
-              },
-              {
-                  label: 'Center',
-                  icon: 'pi pi-fw pi-align-center'
-              },
-              {
-                  label: 'Justify',
-                  icon: 'pi pi-fw pi-align-justify'
-              }
-          ]
-      },
-      {
-          label: 'Users',
-          icon: 'pi pi-fw pi-user',
-          items: [
-              {
-                  label: 'New',
-                  icon: 'pi pi-fw pi-user-plus'
-              },
-              {
-                  label: 'Delete',
-                  icon: 'pi pi-fw pi-user-minus'
-              },
-              {
-                  label: 'Search',
-                  icon: 'pi pi-fw pi-users',
-                  items: [
-                      {
-                          label: 'Filter',
-                          icon: 'pi pi-fw pi-filter',
-                          items: [
-                              {
-                                  label: 'Print',
-                                  icon: 'pi pi-fw pi-print'
-                              }
-                          ]
-                      },
-                      {
-                          icon: 'pi pi-fw pi-bars',
-                          label: 'List'
-                      }
-                  ]
-              }
-          ]
-      },
-      {
-          label: 'Events',
-          icon: 'pi pi-fw pi-calendar',
-          items: [
-              {
-                  label: 'Edit',
-                  icon: 'pi pi-fw pi-pencil',
-                  items: [
-                      {
-                          label: 'Save',
-                          icon: 'pi pi-fw pi-calendar-plus'
-                      },
-                      {
-                          label: 'Delete',
-                          icon: 'pi pi-fw pi-calendar-minus'
-                      }
-                  ]
-              },
-              {
-                  label: 'Archieve',
-                  icon: 'pi pi-fw pi-calendar-times',
-                  items: [
-                      {
-                          label: 'Remove',
-                          icon: 'pi pi-fw pi-calendar-minus'
-                      }
-                  ]
-              }
-          ]
-      },
-      {
-          label: 'Quit',
-          icon: 'pi pi-fw pi-power-off'
+    // nhận params từ đường dẫn localhost:4200/frist/child-a?id=1
+    this.route.queryParams.subscribe(params => {
+      this.citySearch = params['city'];
+    });
+    this.runApp();
+  }
+  async runApp() {
+    await this.changeWeatherUI();
+    await this.getWeatherHourly();
+
+  }
+
+  async changeWeatherUI() {
+    this.weatherService.getWeather(this.citySearch).subscribe(data => {
+      this.currentWeather = data;
+    });
+  }
+  async getWeatherHourly() {
+    try {
+      let data = await this.weatherService.getLatAndLon(this.citySearch).toPromise();
+      this.local = data;
+      this.lat = this.local[0].lat;
+      this.lon = this.local[0].lon;
+
+      this.weatherHourly = await this.weatherService.getWeatherHourly(this.lat, this.lon).toPromise();
+      this.checkDate();
+    } catch (err) {
+      console.log(err);
+
+    }
+  }
+
+  checkDate() {
+    this.item = [];
+    let day = new Date().getDate();
+
+    for (let t of this.weatherHourly.list) {
+      let k: string = t.dt_txt;
+      let nextDay = Number(k.slice(8, 10));
+      if (day != nextDay) {
+        this.item.push({
+          value: t,
+          check: true,
+          show: false
+        })
+        day = nextDay;
       }
-  ];
+      else {
+        this.item.push({
+          value: t,
+          check: false,
+          show: false
+        })
+      }
+    }
+    this.item[0].check = true;
   }
 
 }

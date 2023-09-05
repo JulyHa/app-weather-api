@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Users } from 'src/app/model/users';
+import { Admin } from 'src/app/model/admin';
 
 @Component({
   selector: 'app-login',
@@ -7,10 +7,10 @@ import { Users } from 'src/app/model/users';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit{
-  user: Users;
+  user: Admin;
 
   constructor(){
-    this.user = new Users;
+    this.user = new Admin;
   }
 
   ngOnInit(): void {

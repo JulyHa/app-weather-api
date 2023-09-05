@@ -1,85 +1,180 @@
-<ul class="panel-menu">
-    <li class="panel-menu-item">
-        <div class="grid m-0 p-0" style="text-align: center;"> 
-            <div class="col-2"><span>15:00</span></div>
-            <div class="col-1"><span>33&deg;</span></div>
-            <div class="col-4"><span>🌤️ Trời nắng</span></div>
-            <div class="col-1"><span>💧0%</span></div>
-            <div class="col-4"><span>💨 ĐB 14km/h</span></div>
-          </div>
-      <ul class="sub-menu">
-        <li>
-            <div class="border-50 border-1">
-                <div class="grid">
-                    <div class="col-4">
-                        <div class="grid">
-                            <div class="col-3">Ảnh</div>
-                            <div class="col-9">
-                                <div>Cảm giác như</div>
-                                <b>29&deg;</b>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4"> 
-                        <div class="grid">
-                            <div class="col-3">Ảnh</div>
-                            <div class="col-9">
-                                <div>Gió</div>
-                                <b>BTB 6 km/h</b>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4"> 
-                        <div class="grid">
-                            <div class="col-3">Ảnh</div>
-                            <div class="col-9">
-                                <div>Độ ẩm</div>
-                                <b>74%</b>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr width="80%">
-                <div class="grid">
-                    <div class="col-4">
-                        <div class="grid">
-                            <div class="col-3">Ảnh</div>
-                            <div class="col-9">
-                                <div>Chỉ số UV</div>
-                                <b>0 / 11</b>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="grid">
-                            <div class="col-3">Ảnh</div>
-                            <div class="col-9">
-                                <div>Mây che phủ</div>
-                                <b>21%</b>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="grid">
-                            <div class="col-3">Ảnh</div>
-                            <div class="col-9">
-                                <div>Lượng mưa</div>
-                                <b>0cm</b>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </li>
-      </ul>
-    </li>
-    <li class="panel-menu-item">
-      Item 2
-      <ul class="sub-menu">
-        <li>Subitem 2.1</li>
-        <li>Subitem 2.2</li>
-      </ul>
-    </li>
-    <li class="panel-menu-item">Item 3</li>
-  </ul>
-  
+<div>
+  <div class="card">
+    <div class="menu grid">
+      <div class="col-3 menu-icon">
+        <img
+          src="../../../assets/img/icon-menu.png"
+          alt="Icon cloud"
+          class="icon"
+        />
+      </div>
+      <div class="col-6"></div>
+      <div class="col-3 menu-login">
+        <p-button (click)="logout()">Logout</p-button>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-8 body m-10">
+    <div>
+      <div class="grid mt-3">
+        <div class="col-10">
+          <h2>Quản trị viên</h2>
+        </div>
+        <div class="col-2">
+          <p-button
+            label="Thêm"
+            icon="pi pi-user-plus"
+            styleClass="p-button-raised p-button-success"
+            (click)="confirm2()"
+          ></p-button>
+        </div>
+      </div>
+      <div>
+        <p-table
+          [value]="admins"
+          styleClass="p-datatable-striped"
+          [tableStyle]="{ 'min-width': '50rem' }"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th>STT</th>
+              <th>Username</th>
+              <th>Action</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-admin>
+            <tr>
+              <td>{{ admin.id }}</td>
+              <td>{{ admin.username }}</td>
+              <td>
+                <p-button
+                  icon="pi pi-eye"
+                  styleClass="p-button-rounded p-button-success p-button-text p-button-raised"
+                  (click)="showEdit(admin.id)"
+                ></p-button>
+                <p-button
+                  class="ml-3"
+                  icon="pi pi-check"
+                  styleClass="p-button-rounded p-button-info p-button-text p-button-raised"
+                ></p-button>
+                <p-button
+                  class="ml-3"
+                  icon="pi pi-times"
+                  styleClass="p-button-rounded p-button-danger p-button-text p-button-raised"
+                  (click)="deleteAdmin(admin.id)"
+                ></p-button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+
+    <div>
+      <div class="grid mt-3">
+        <div class="col-10">
+          <h2>Thành phố</h2>
+        </div>
+        <div class="col-2">
+          <p-button
+            label="Thêm"
+            icon="pi pi-user-plus"
+            styleClass="p-button-raised p-button-success"
+          ></p-button>
+        </div>
+      </div>
+      <div>
+        <p-table
+          [value]="admins"
+          styleClass="p-datatable-striped"
+          [tableStyle]="{ 'min-width': '50rem' }"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th>STT</th>
+              <th>Username</th>
+              <th>Action</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-admin>
+            <tr>
+              <td>{{ admin.id }}</td>
+              <td>{{ admin.username }}</td>
+              <td>
+                <p-button
+                  icon="pi pi-check"
+                  styleClass="p-button-rounded p-button-outlined"
+                ></p-button>
+                <p-button
+                  class="ml-3"
+                  icon="pi pi-times"
+                  styleClass="p-button-rounded p-button-danger p-button-outlined"
+                ></p-button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog
+  header="Thêm người quản trị"
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '35vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <div class="align-items-centercard flex flex-column align-items-center gap-3">
+    <table>
+      <tr>
+        <td style="width: 100px">
+          <label for="username">Username : </label>
+        </td>
+        <td>
+          <input
+            pInputText
+            type="text"
+            id="username"
+            class="p-inputtext-sm"
+            placeholder="Username"
+            [(ngModel)]="username"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td><label for="password">Password : </label></td>
+        <td>
+          <input
+            pInputText
+            type="password"
+            id="password"
+            class="p-inputtext-sm"
+            placeholder="Password"
+            [(ngModel)]="password"
+          />
+        </td>
+      </tr>
+    </table>
+    <p-button label="Submit" icon="pi pi-check" (click)="addAdmin()"></p-button>
+  </div>
+</p-dialog>
+
+<p-dialog
+  header="Thông tin chi tiết"
+  [(visible)]="infor"
+  [modal]="true"
+  [style]="{ width: '35vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <div class="align-items-centercard flex flex-column align-items-center gap-3">
+    <p>Username: {{ username }}</p>
+    <p>Passwors: {{ password }}</p>
+  </div>
+</p-dialog>
+<p-toast></p-toast>
+<p-confirmDialog [style]="{ width: '50vw' }"></p-confirmDialog>

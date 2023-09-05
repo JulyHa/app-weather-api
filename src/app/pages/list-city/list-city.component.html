@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="menu grid">
+    <div class="col-3 menu-icon">
+      <img
+        src="../../../assets/img/icon-menu.png"
+        alt="Icon cloud"
+        class="icon"
+      />
+    </div>
+    <div class="col-6"></div>
+    <div class="col-3 menu-login">
+      <p-button routerLink="/login">Login</p-button>
+    </div>
+  </div>
+</div>
+
+<div class="w-8 body m-10">
+  <div class="m-4">
+    <p-table
+      [value]="citys"
+      styleClass="p-datatable-striped"
+      [tableStyle]="{ 'min-width': '50rem' }"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>STT</th>
+          <th>City</th>
+          <th>Country</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-citys>
+        <tr [routerLink]="['item']" [queryParams]="{ city: citys.name }">
+          <td>{{ citys.id }}</td>
+          <td>{{ citys.city }}</td>
+          <td>{{ citys.country }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
