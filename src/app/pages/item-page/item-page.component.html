@@ -1,0 +1,85 @@
+<!-- <div *ngFor="let hourly of hourly"> -->
+<ul class="panel-menu">
+    <li class="panel-menu-hourly">
+        <div class="grid m-0 p-0" style="text-align: center;">
+            <div class="col-2"><span>{{hourly.dt * 1000 | date : 'shortTime'}}</span></div>
+            <div class="col-1"><span>{{hourly.main.feels_like - 273.15 | number: '1.0-0'}}&deg;</span></div>
+            <div class="col-4">
+                <img style="height: 60%; float: left;" src="https://openweathermap.org/img/wn/{{hourly.weather[0].icon}}.png" alt="icon">
+                {{hourly.weather[0].description}}
+            </div>
+            <div class="col-2"><span>💧 {{hourly.main.humidity}}%</span></div>
+            <div class="col-3"><span>💨 {{hourly.wind.speed}}m/s</span></div>
+        </div>
+        <ul class="sub-menu">
+            <li>
+                <div class="border-500 border-1 border-round-sm">
+                    <div class="grid">
+                        <div class="col-4">
+                            <div class="grid">
+                                <div class="col-3">
+                                    <div class="card-img">
+                                        <img src="" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <div>Cảm giác như</div>
+                                    <b>29&deg;</b>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="grid">
+                                <div class="col-3 hourly-img">Ảnh</div>
+                                <div class="col-9">
+                                    <div>Gió</div>
+                                    <b>BTB 6 km/h</b>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="grid">
+                                <div class="col-3 hourly-img">Ảnh</div>
+                                <div class="col-9">
+                                    <div>Độ ẩm</div>
+                                    <b>74%</b>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr width="80%">
+                    <div class="grid">
+                        <div class="col-4">
+                            <div class="grid">
+                                <div class="col-3 hourly-img">Ảnh</div>
+                                <div class="col-9">
+                                    <div>Chỉ số UV</div>
+                                    <b>0 / 11</b>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="grid">
+                                <div class="col-3 hourly-img">Ảnh</div>
+                                <div class="col-9">
+                                    <div>Mây che phủ</div>
+                                    <b>21%</b>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="grid">
+                                <div class="col-3 hourly-img">Ảnh</div>
+                                <div class="col-9">
+                                    <div>Lượng mưa</div>
+                                    <b>0cm</b>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </li>
+</ul>
+<!-- </div> -->
