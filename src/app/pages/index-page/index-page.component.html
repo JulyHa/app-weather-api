@@ -1,30 +1,20 @@
 <div class="main">
-  <div class="card">
+  <!-- <div class="card">
     <div class="menu grid">
-      <div class="col-3 menu-icon" [routerLink]="['/']">
+      <div class="col-1 menu-icon" [routerLink]="['/']">
         <img
           src="../../../assets/img/icon-menu.png"
           alt="Icon cloud"
           class="icon"
         />
       </div>
-      <div class="col-6 menu-search">
-        <span class="p-input-icon-left">
-          <i class="pi pi-search"></i>
-          <input
-            class="search-input"
-            type="text"
-            pInputText
-            placeholder="Search..."
-            [(ngModel)] = 'citySearch' (keydown.enter)="runApp()"
-          />
-        </span>
-      </div>
-      <div class="col-3 menu-login">
+      <div class="col-10"></div>
+      <div class="col-1 menu-login">
         <p-button [routerLink]="['/login']">Login</p-button>
       </div>
     </div>
-  </div>
+  </div> -->
+  <app-header></app-header>
 
  
   <div class="body w-8 m-0-auto">

@@ -1,0 +1,151 @@
+<div style=" height: 100%;
+object-fit: cover;">
+  <div class="body m-10">
+    <div class="card">
+      <p-table
+        [value]="showAdmin"
+        styleClass="p-datatable-gridlines"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [paginator]="true"
+        [rows]="10"
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        currentPageReportTemplate="{first} đến {last} trong tổng {totalRecords} phần tử"
+        [rowsPerPageOptions]="[10, 25, 50]"
+      >
+        <ng-template pTemplate="caption">
+          <div class="grid">
+            <h3 class="col-12">Người quản trị</h3>
+            <div class="col-10 m-0 p-0">
+              <div class="grid-nogutter">
+                <span class="p-input-icon-left">
+                  <i class="pi pi-search"></i>
+                  <input type="text" class="p-inputtext-sm" pInputText [(ngModel)]="value" />
+                  <p-button
+                    class="ml-1"
+                    styleClass="p-button-success p-button-sm"
+                    icon="pi pi-search"
+                    (click)="searchAdmin()"
+                  ></p-button>
+                  <p-button
+                    class="ml-1"
+                    styleClass="p-button-danger p-button-sm"
+                    icon="pi pi-times"
+                    (click)="reset()"
+                  ></p-button>
+                </span>
+              </div>
+            </div>
+            <div class="col-2 m-0 p-0">
+              <p-button
+                label="Thêm người quản trị"
+                icon="pi pi-user-plus"
+                styleClass="p-button-raised p-button-success p-button-sm"
+                (click)="showDialog()"
+              ></p-button>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th class="w-3rem">ID</th>
+            <th>Tài khoản</th>
+            <th class="w-13rem"></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-admin>
+          <tr>
+            <td>{{ admin.id }}</td>
+            <td>{{ admin.username }}</td>
+            <td>
+              <p-button
+                icon="pi pi-eye"
+                styleClass="p-button-secondary p-button-sm"
+                (click)="showInformation(admin.id)"
+              ></p-button>
+              <p-button
+                class="ml-2"
+                icon="pi pi-pencil"
+                styleClass="p-button-success p-button-sm"
+                (click)="showEdit(admin.id)"
+              ></p-button>
+              <p-button
+                class="ml-2"
+                icon="pi pi-times"
+                styleClass="p-button-danger p-button-sm"
+                (click)="showDelete(admin.id)"
+              ></p-button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+
+<p-dialog
+  [header]="nameEdit"
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '25vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <div class="align-items-centercard flex flex-column align-items-center gap-3">
+    <table>
+      <tr>
+        <td style="width: 100px">
+          <label for="username">Tài khoản : </label>
+        </td>
+        <td>
+          <input
+            pInputText
+            type="text"
+            class="p-inputtext-sm"
+            [(ngModel)]="account.username"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td><label for="password">Mật khẩu : </label></td>
+        <td>
+          <p-password
+            [(ngModel)]="account.password"
+            [toggleMask]="true"
+            class="p-inputtext-sm"
+          ></p-password>
+        </td>
+      </tr>
+    </table>
+    <p-button *ngIf="!isEdit" label="Thêm" (click)="addAdmin()"></p-button>
+    <p-button *ngIf="isEdit" label="Sửa" (click)="editAdmin()"></p-button>
+  </div>
+</p-dialog>
+
+<p-dialog
+  header="Thông tin chi tiết"
+  [(visible)]="infor"
+  [modal]="true"
+  [style]="{ width: '25vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <div class="grid md:text-center">
+    <div class="col-7">Tài khoản : </div>
+    <div class="col-1">{{ account.username }}</div>
+    <div class="col-7">Mật khẩu : </div>
+    <div class="col-1">{{ account.password }}</div>
+    <p></p>
+    <p></p>
+  </div>
+</p-dialog>
+<p-toast></p-toast>
+<p-confirmDialog #cd  [style]="{ width: '35vw' }">
+    <ng-template pTemplate="header">
+        <h3>Xác nhận xóa</h3>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button type="button" pButton icon="pi pi-times" label="Không" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="pi pi-check" label="Có" (click)="cd.accept()"></button>
+    </ng-template>
+</p-confirmDialog>

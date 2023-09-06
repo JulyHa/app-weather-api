@@ -1,37 +1,48 @@
 <div class="grid">
-    <div class="col fullscreen-div" [routerLink]="['/']">
-        <img src="../../../assets/img/pg-weather.png" alt="image weather" class="img-fit" >
-    </div>
-    <div class="col md:text-center">
-        <div class="div-login">
-            <div class="card">
-                <span class="title">Login App Weather API!</span>
-                <div class="field grid form-login">
-                    <label for="firstname4" class="col-12 mb-2 md:col-2 md:mb-0">Username</label>
-                    <div class="col-12 md:col-10">
-                        <input id="firstname4" type="text" [(ngModel)]="username" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-                    </div>
-                </div>
-                <div class="field grid">
-                    <label for="lastname4" class="col-12 mb-2 md:col-2 md:mb-0">Password</label>
-                    <div class="col-12 md:col-10">
-                        <input id="lastname4" type="password" [(ngModel)]="password" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-                    </div>
-                </div>
-                <div class="field grid">
-                    <div class="col md:text-right">
-                        <a routerLink="/register" class="link-register">Create a new account!</a>
-                    </div>
-                   
-                </div>
-                <div class="field grid">
-                    <div class="col-12">
-                        <p-button label="Login" (click)="login()" ></p-button>
-                    </div>
-                </div>
-            </div>
-
-
+  <div class="col fullscreen-div" [routerLink]="['/']">
+    <img
+      src="../../../assets/img/pg-weather.png"
+      alt="image weather"
+      class="img-fit"
+    />
+  </div>
+  <div class="col md:text-center">
+    <div class="div-login">
+      <div class="card">
+        <span class="title">App Weather API!</span>
+        <div class="field grid form-login">
+          <label for="firstname4" class="col-4 mb-2 md:col-3 md:mb-0"
+            >Tài khoản: </label
+          >
+          <div class="col-12 md:col-9">
+            <input
+              id="firstname4"
+              type="text"
+              [(ngModel)]="username"
+              class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            />
+          </div>
         </div>
+        <div class="field grid">
+          <label for="lastname4" class="col-8 mb-2 md:col-3 md:mb-0"
+            >Mật khẩu: </label
+          >
+          <div class="col-12 md:col-9">
+            <input
+              id="lastname4"
+              type="password"
+              [(ngModel)]="password"
+              class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            />
+          </div>
+        </div>
+        <div class="field grid">
+          <div class="col-12">
+            <p-button label="Đăng nhập" (click)="login()"></p-button>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
+<p-toast></p-toast>

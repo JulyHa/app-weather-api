@@ -1,25 +1,14 @@
-.main {
-  padding: 0;
-  background-image: linear-gradient(to bottom, rgb(0, 89, 134), rgb(216, 238, 238)) !important;
-}
-
-.menu {
-  background-color: rgb(0, 89, 134);
-}
-
-.icon {
-  margin: 0 20% 0 10%;
-  width: 60px;
-  height: 100%;
-}
-
-.menu-icon {
-  text-align: right;
-  height: 60px;
-}
-
 .body {
-  margin: 0 auto;
+  margin: 10px auto;
+  background-color:var(--surface-card);
+  border: 1px solid var(--surface-border);
+  padding: 2rem;
+  box-shadow: var(--card-shadow);
+  border-radius: 12px;
+}
+
+.header{
+  background-color: rebeccapurple;
 }
 
 .menu-login {

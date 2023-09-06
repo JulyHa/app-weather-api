@@ -1,0 +1,22 @@
+<div class="main">
+  <div class="card">
+    <div class="menu grid">
+      <div class="col-1 menu-icon" [routerLink]="['/']">
+        <img
+          src="../../../assets/img/icon-menu.png"
+          alt="Icon cloud"
+          class="icon"
+        />
+      </div>
+      <div class="col-8"></div>
+      <div class="col-3 menu-login" style="float: right">
+        <div>
+          <p-button class="ml-3" *ngIf="!acc" [routerLink]="['/login']">Đăng nhập</p-button>
+          <p-button class="ml-3" *ngIf="acc && value" [routerLink]="['/manage/admin']">Người quản trị</p-button>
+          <p-button class="ml-3" *ngIf="acc && !value" [routerLink]="['/']">Người dùng</p-button>
+          <p-button class="ml-3" *ngIf="acc" (click)="logout()">Đăng xuất</p-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

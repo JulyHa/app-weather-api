@@ -27,10 +27,24 @@ export class ListCityComponent implements OnInit{
       city: 'Ba Vì',
       country: 'Việt Nam'
     }
-  ]
+  ];
+  showCitys : City[];
+  value : string;
   constructor(){}
 
   ngOnInit(): void {
-      
+      this.showCitys = this.citys;
+  }
+  btnSearch(){
+    this.showCitys = [];
+      for(let item of this.citys){
+        if(item.city.includes(this.value)){
+          this.showCitys.push(item);
+        }
+      }
+  }
+  btnDelete(){
+    this.value = ''
+    this.showCitys = this.citys;
   }
 }
