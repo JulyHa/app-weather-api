@@ -1,7 +1,7 @@
 <div class="main">
   <!-- <app-header></app-header> -->
 
-  <div class="body w-8 m-0-auto">
+  <div class="body w-8">
     <div class="grid m-1">
       <div class="col-8 p-0">
         <div *ngFor="let weather of currentWeather">
@@ -34,11 +34,11 @@
         <div>
           <div class="mt-3 border-1 border-500" style="background-color: white;" >
             <div >
-              <p class="m-3 text-xl"><span class="font-bold">Thời tiết trong ngày</span> - {{currentWeather[0].name}}</p>
+              <p class="m-3 text-xl"><span class="font-bold">Thời tiết trong ngày</span> - {{currentWeather[0]?.name}}</p>
               <div *ngFor="let itemValue of item; let vtri = index">
                 <hr *ngIf="itemValue.check">
                 <b *ngIf="itemValue.check" class="m-3">{{itemValue.value.dt * 1000 | date: 'fullDate'}}</b>
-                <app-item-page [current] = 'currentWeather' [hourly] = 'itemValue' [index] = 'index'></app-item-page>
+                <app-item-page [current] = 'currentWeather[0]' [hourly] = 'itemValue' [index] = 'index'></app-item-page>
               </div>
               
             </div>

@@ -1,8 +1,9 @@
-.main{
+.main {
     margin: -20px;
     padding: 0;
-    background-image: linear-gradient(to bottom,rgb(0,89,134),rgb(216,238,238)) !important;
+    background-image: linear-gradient(to bottom, rgb(0, 89, 134), rgb(216, 238, 238)) !important;
 }
+
 .menu {
     background-color: rgb(0, 89, 134);
 }
@@ -11,7 +12,7 @@
     margin: 0 20% 0 10%;
     width: 60px;
     height: 100%;
-} 
+}
 
 .menu-icon {
     text-align: right;
@@ -20,15 +21,22 @@
 
 .body {
     margin: 0 auto;
+    height: 98vh;
+    padding: 0;
+    background-color: var(--surface-card);
+    border: 1px solid var(--surface-border);
+    box-shadow: var(--card-shadow);
+    border-radius: 12px;
 }
 
 .body-page1 {
-    background-image: linear-gradient(to right,rgb(24, 129, 169),rgb(99, 195, 217)) !important;
+    background-image: linear-gradient(to right, rgb(24, 129, 169), rgb(99, 195, 217)) !important;
     color: white;
 }
-.title-page1{
-    background-color: rgb(25,73,87); 
-    color: white; 
+
+.title-page1 {
+    background-color: rgb(25, 73, 87);
+    color: white;
     height: 40px;
 }
 
@@ -56,31 +64,33 @@
     margin-right: 20%;
     margin-top: 10%;
 }
+
 .panel-menu {
     list-style: none;
     padding: 0;
-  }
-  
-  .sub-menu {
+}
+
+.sub-menu {
     // display: none;
     list-style: none;
     padding-left: 20px;
-  }
-  .panel-menu-hourly {
+}
+
+.panel-menu-hourly {
     border-top: 1px solid #ccc;
     padding: 10px;
     position: relative;
     cursor: pointer;
-  }
-  
-  .panel-menu-hourly:focus .sub-menu {
+}
+
+.panel-menu-hourly:focus .sub-menu {
     display: block;
-  }
-  
-  .sub-menu li {
+}
+
+.sub-menu li {
     padding: 5px 0;
-  }
-  
-  .item-img{
+}
+
+.item-img {
     float: right;
-  }
+}

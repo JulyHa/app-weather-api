@@ -1,85 +1,160 @@
-<div>
-<ul class="panel-menu" >
-    <li class="panel-menu-hourly" id="panel-menu-hourly" (click)="toggleSubMenu(index)" >
-        <div class="grid m-0 p-0" style="text-align: center;">
-            <div class="col-2"><span>{{hourly.value.dt_txt | date : 'shortTime'}}</span></div>
-            <div class="col-1"><span>{{hourly.value.main.temp - 273.15 | number: '1.0-0'}}&deg;</span></div>
-            <div class="col-4 pl-8" >
-                <img style="height: 60%; float: left;" src="https://openweathermap.org/img/wn/{{hourly.value.weather[0].icon}}.png" alt="icon">
-                <span style="float: left;">{{hourly.value.weather[0].description | titlecase}}</span>
+<div class="body w-8">
+  <div>
+    <h2>Hà Nội</h2>
+    <p>33</p>
+    <p>Có mây</p>
+  </div>
+  <div>
+
+    <p-scroller [items]="hourly.value?.list" [itemSize]="100" scrollHeight="80vh" styleClass="border-1 surface-border" [style]="{'width': '100%'}">
+        <ng-template pTemplate="item" let-item let-options="options">
+            <div class="flex align-items-center p-2" [ngClass]="{ 'surface-ground': options.odd }" style="height: 100px;">
+                <!-- {{ item.dt_txt | date : "shortTime"}} -->
+                <div class="grid m-0 p-0" style="text-align: center; width: 100%;">
+                    <div class="col-2">
+                      <span>{{ item.dt_txt | date : "shortTime" }}</span>
+                    </div>
+                    <div class="col-1">
+                      <span
+                        >{{
+                            item.main.temp - 273.15 | number : "1.0-0"
+                        }}&deg;</span
+                      >
+                    </div>
+                    <div class="col-4 pl-8">
+                      <img
+                        style="height: 60%; float: left"
+                        src="https://openweathermap.org/img/wn/{{item.weather[0].icon}}.png"
+                        alt="icon"
+                      />
+                      <span style="float: left">{{
+                        item.weather[0].description | titlecase
+                      }}</span>
+                    </div>
+                    <div class="col-2">
+                      <span>💧 {{ item.main.humidity }}%</span>
+                    </div>
+                    <div class="col-3">
+                      <span>💨 {{ item.wind.speed }}m/s</span>
+                    </div>
+                  </div>
+
             </div>
-            <div class="col-2"><span>💧 {{hourly.value.main.humidity}}%</span></div>
-            <div class="col-3"><span>💨 {{hourly.value.wind.speed}}m/s</span></div>
+        </ng-template>
+    </p-scroller>
+
+
+    <!-- <ul class="panel-menu" *ngFor="let hourlyWeather of hourly.value?.list">
+    <li class="panel-menu-hourly" id="panel-menu-hourly">
+      <div class="grid m-0 p-0" style="text-align: center">
+        <div class="col-2">
+          <span>{{ hourlyWeather.dt_txt | date : "shortTime" }}</span>
         </div>
-        <ul class="sub-menu" [hidden]="!hourly.show">
-            <li>
-                <div class="border-500 border-1 border-round-sm">
-                    <div class="grid">
-                        <div class="col-4">
-                            <div class="grid">
-                                <div class="col-3">
-                                    <div class="card-img">
-                                        <img src="https://openweathermap.org/img/wn/{{hourly.value.weather[0].icon}}.png" alt="icon">
-                                    </div>
-                                </div>
-                                <div class="col-9">
-                                    <div>Cảm giác như</div>
-                                    <b>{{hourly.value.main.feels_like - 273.15 | number : '1.0-0'}}&deg;</b>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="grid">
-                                <div class="col-3 hourly-img">💨</div>
-                                <div class="col-9">
-                                    <div>Gió</div>
-                                    <b>BTB {{hourly.value.wind.speed}} m/s</b>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="grid">
-                                <div class="col-3 hourly-img">💧</div>
-                                <div class="col-9">
-                                    <div>Độ ẩm</div>
-                                    <b>{{hourly.value.main.humidity}}%</b>
-                                </div>
-                            </div>
-                        </div>
+        <div class="col-1">
+          <span
+            >{{
+              hourlyWeather.main.temp - 273.15 | number : "1.0-0"
+            }}&deg;</span
+          >
+        </div>
+        <div class="col-4 pl-8">
+          <img
+            style="height: 60%; float: left"
+            src="https://openweathermap.org/img/wn/{{hourlyWeather.weather[0].icon}}.png"
+            alt="icon"
+          />
+          <span style="float: left">{{
+            hourlyWeather.weather[0].description | titlecase
+          }}</span>
+        </div>
+        <div class="col-2">
+          <span>💧 {{ hourlyWeather.main.humidity }}%</span>
+        </div>
+        <div class="col-3">
+          <span>💨 {{ hourlyWeather.wind.speed }}m/s</span>
+        </div>
+      </div>
+      <ul class="sub-menu" [hidden]="!hourly.show">
+        <li>
+          <div class="border-500 border-1 border-round-sm">
+            <div class="grid">
+              <div class="col-4">
+                <div class="grid">
+                  <div class="col-3">
+                    <div class="card-img">
+                      <img
+                        src="https://openweathermap.org/img/wn/{{
+                          hourlyWeather.weather[0].icon
+                        }}.png"
+                        alt="icon"
+                      />
                     </div>
-                    <hr width="80%">
-                    <div class="grid">
-                        <div class="col-4">
-                            <div class="grid">
-                                <div class="col-3 hourly-img pl-4">☀️</div>
-                                <div class="col-9">
-                                    <div>Chỉ số UV</div>
-                                    <b>0 / 11</b>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="grid">
-                                <div class="col-3 hourly-img">☁️</div>
-                                <div class="col-9">
-                                    <div>Mây che phủ</div>
-                                    <b>{{hourly.value.clouds.all}}%</b>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="grid">
-                                <div class="col-3 hourly-img">💦</div>
-                                <div class="col-9">
-                                    <div>Tầm nhìn</div>
-                                    <b>{{hourly.value.visibility /1000}}km</b>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  </div>
+                  <div class="col-9">
+                    <div>Cảm giác như</div>
+                    <b
+                      >{{
+                        hourlyWeather.main.feels_like - 273.15
+                          | number : "1.0-0"
+                      }}&deg;</b
+                    >
+                  </div>
                 </div>
-            </li>
-        </ul>
+              </div>
+              <div class="col-4">
+                <div class="grid">
+                  <div class="col-3 hourly-img">💨</div>
+                  <div class="col-9">
+                    <div>Gió</div>
+                    <b>BTB {{ hourlyWeather.wind.speed }} m/s</b>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="grid">
+                  <div class="col-3 hourly-img">💧</div>
+                  <div class="col-9">
+                    <div>Độ ẩm</div>
+                    <b>{{ hourlyWeather.main.humidity }}%</b>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr width="80%" />
+            <div class="grid">
+              <div class="col-4">
+                <div class="grid">
+                  <div class="col-3 hourly-img pl-4">☀️</div>
+                  <div class="col-9">
+                    <div>Chỉ số UV</div>
+                    <b>0 / 11</b>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="grid">
+                  <div class="col-3 hourly-img">☁️</div>
+                  <div class="col-9">
+                    <div>Mây che phủ</div>
+                    <b>{{ hourlyWeather.clouds.all }}%</b>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="grid">
+                  <div class="col-3 hourly-img">💦</div>
+                  <div class="col-9">
+                    <div>Tầm nhìn</div>
+                    <b>{{ hourlyWeather.visibility / 1000 }}km</b>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
     </li>
-</ul>
+  </ul> -->
+  </div>
+  
 </div>

@@ -1,5 +1,5 @@
 export class Weather {
     value : any;
-    check: boolean;
-    show : boolean;
+    check: boolean = false;
+    show : boolean = false;
 }

@@ -15,7 +15,7 @@ export class IndexPageComponent implements OnInit {
   currentWeather: any[] = [];
   local: any;
   weatherHourly: any = [];
-  item: Weather[] = [];
+  item: Weather[];
   citys: City[] = [];
   citySearch: string = 'Hà nội';
   lat: number;
@@ -44,10 +44,6 @@ export class IndexPageComponent implements OnInit {
       this.currentWeather.push(data);
     }
   }
-
-
-
-
   async getWeatherHourly() {
     try {
       // let data = await this.weatherService.getLatAndLon(this.citySearch).toPromise();
@@ -57,9 +53,11 @@ export class IndexPageComponent implements OnInit {
         this.lon = current.coord.lon;
         let hourly = await this.weatherService.getWeatherHourly(this.lat, this.lon).toPromise();
         this.weatherHourly.push(hourly);
+      
       }
-
-      // this.checkDate();
+      console.log(this.weatherHourly);
+      
+      this.checkDate();
     } catch (err) {
       console.log(err);
 
@@ -69,8 +67,7 @@ export class IndexPageComponent implements OnInit {
   checkDate() {
     this.item = [];
     let day = new Date().getDate();
-
-    for (let t of this.weatherHourly.list) {
+    for (let t of this.weatherHourly[0].list) {
       let k: string = t.dt_txt;
       let nextDay = Number(k.slice(8, 10));
       if (day != nextDay) {

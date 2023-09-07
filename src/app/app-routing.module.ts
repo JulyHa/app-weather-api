@@ -6,6 +6,7 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { ManageAdminComponent } from './components/manage-admin/manage-admin.component';
 import { ManageCityComponent } from './components/manage-city/manage-city.component';
 import { AuthGuard } from './config/AuthGuard';
+import { ItemPageComponent } from './pages/item-page/item-page.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
@@ -23,7 +24,7 @@ const routes: Routes = [
       }
     ], canActivate: [AuthGuard]
   },
-  // { path: 'item', component: IndexPageComponent },
+  { path: 'item', component: ItemPageComponent },
   { path: '', component: IndexPageComponent },
 ];
 

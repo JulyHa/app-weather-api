@@ -29,6 +29,7 @@ import { MenuModule } from 'primeng/menu';
 import { ManageAdminComponent } from './components/manage-admin/manage-admin.component';
 import { ManageCityComponent } from './components/manage-city/manage-city.component';
 import { PasswordModule } from 'primeng/password';
+import { ScrollerModule } from 'primeng/scroller';
 // Đăng ký locales tiếng Việt
 registerLocaleData(localeVi);
 @NgModule({
@@ -63,6 +64,7 @@ registerLocaleData(localeVi);
     ToastModule,
     MenuModule,
     PasswordModule,
+    ScrollerModule,
   ],
   providers: [{
     provide: LOCALE_ID,
