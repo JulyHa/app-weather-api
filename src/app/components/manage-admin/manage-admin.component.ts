@@ -11,7 +11,6 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
   styleUrls: ['./manage-admin.component.scss']
 })
 export class ManageAdminComponent implements OnInit {
-  // admins: Admin[];
   showAdmin: Admin[];
   visible: boolean = false;
   infor: boolean = false;
@@ -22,13 +21,12 @@ export class ManageAdminComponent implements OnInit {
   value: string = '';
 
   constructor(private adminService: AdminService, private confirmationService: ConfirmationService, private messageService: MessageService) {
-    // this.admins = this.adminService.getAll();
     this.showAdmin = this.adminService.getAll();
   }
 
   ngOnInit(): void {
     
-    this.account = { username: '', password: '' }
+    this.account =new Admin;
   }
   showDialog() {
     this.visible = true;
@@ -38,7 +36,7 @@ export class ManageAdminComponent implements OnInit {
     this.account.password = '';
   }
   addAdmin() {
-    let res = this.adminService.addAdmin({ username: this.account.username, password: this.account.password });
+    let res = this.adminService.add({ username: this.account.username, password: this.account.password });
     if (res) {
       this.messageService.add({ severity: 'success', summary: 'Thành công', detail: 'Thêm thành công!' });
     } else {
@@ -76,7 +74,7 @@ export class ManageAdminComponent implements OnInit {
       username: this.account.username,
       password: this.account.password
     };
-    let res = this.adminService.editAdmin(this.account.id, newAccount);
+    let res = this.adminService.edit(this.account.id, newAccount);
     if (res) {
       this.messageService.add({ severity: 'success', summary: 'Thành công', detail: 'Sửa thành công!' });
     } else {
@@ -90,10 +88,9 @@ export class ManageAdminComponent implements OnInit {
     let name = this.adminService.findById(id).username;
     this.confirmationService.confirm({
       message: 'Bạn có muốn xóa người quản trị tên '+ name+' này không?',
-      // header: 'Xác nhận xóa',
       icon: 'pi pi-info-circle',
       accept: () => {
-        if (this.adminService.deleteAdmin(id)) {
+        if (this.adminService.remove(id)) {
           this.messageService.add({ severity: 'success', summary: 'Thành công', detail: 'Bạn đã xóa thành công!' });
           this.showAdmin = this.adminService.getAll();
         }

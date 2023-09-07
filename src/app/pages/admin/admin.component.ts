@@ -28,7 +28,8 @@ export class AdminComponent implements OnInit {
           {
             label: 'Người quản trị',
             icon: 'pi pi-user',
-            url: '/manage/admin'
+            url: '/manage/admin',
+            target: '_self'
           }
         ]
       },
@@ -38,10 +39,12 @@ export class AdminComponent implements OnInit {
           {
             label: 'Thành phố',
             icon: 'pi pi-building',
-            url: '/manage/city'
+            url: '/manage/city',
+            target: '_self'
           }
         ]
       },
+      
     ]
 
   }

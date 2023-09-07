@@ -1,14 +1,21 @@
+.main{
+  height: 100%;
+  width: 100%;
+}
 .body {
-  margin: 10px auto;
+  height: 98vh;
+  width: 90%;
+  margin: 0;
   background-color:var(--surface-card);
   border: 1px solid var(--surface-border);
-  padding: 2rem;
   box-shadow: var(--card-shadow);
   border-radius: 12px;
 }
 
 .header{
-  background-color: rebeccapurple;
+  width: 70vh;
+  margin: 0 auto;
+  border: 0px;
 }
 
 .menu-login {

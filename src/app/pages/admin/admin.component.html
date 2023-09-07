@@ -1,15 +1,30 @@
-<div>
-  <app-header [value]="false"></app-header>
-  <div class="grid">
-    <div class="col-2">
+<div class="main">
+  <!-- <app-header [value]="false"></app-header> -->
+  <div class="grid m-2">
+    <div class="col-2 p-0">
       <div class="body">
-        <p-menu class="header" [model]="items" [routerLink]="items"></p-menu>
+        <div class="card flex justify-content-center mt-2">
+          <p-menu
+            [model]="items"
+            [style]="{ width: '28vh', border: 'none', height: '90vh' }"
+          ></p-menu>
+        </div>
+        <div class="card flex justify-content-center">
+          <p-button
+            styleClass="p-button-secondary"
+            [style]="{ width: '10rem', 'justify-content': 'center' }"
+            (click)="logout()"
+            >Đăng xuất</p-button
+          >
+        </div>
       </div>
     </div>
-   
-    
-    <div class="col-10">
-       <router-outlet></router-outlet>
+
+    <div class="col-10 p-0">
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+
       <!-- Quản lý User -->
       <!-- <app-manage-admin [admins]="admins"></app-manage-admin> -->
 

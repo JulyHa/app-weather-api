@@ -1,27 +1,16 @@
 <div class="main">
-  <!-- <div class="card">
-    <div class="menu grid">
-      <div class="col-1 menu-icon" [routerLink]="['/']">
-        <img
-          src="../../../assets/img/icon-menu.png"
-          alt="Icon cloud"
-          class="icon"
-        />
-      </div>
-      <div class="col-10"></div>
-      <div class="col-1 menu-login">
-        <p-button [routerLink]="['/login']">Login</p-button>
-      </div>
-    </div>
-  </div> -->
-  <app-header></app-header>
+  <!-- <app-header></app-header> -->
 
- 
   <div class="body w-8 m-0-auto">
-    <div class="mt-3"><p-button [routerLink]="['/']">Quay về</p-button></div>
     <div class="grid m-1">
       <div class="col-8 p-0">
-        <div>
+        <div *ngFor="let weather of currentWeather">
+          <app-list-city
+            [currentWeather]="weather"
+          ></app-list-city>
+        </div>
+
+        <!-- <div>
           <div class="border-round-sm  body-page1">
               <div class="border-round-sm title-page1">
                 <p class="text-xl pt-1 pl-3" ><b>{{local[0].local_names['vi']}} - {{currentWeather.dt*1000 | date: 'medium'}}</b>
@@ -40,11 +29,12 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
+
         <div>
           <div class="mt-3 border-1 border-500" style="background-color: white;" >
             <div >
-              <p class="m-3 text-xl"><span class="font-bold">Thời tiết trong ngày</span> - {{local[0].local_names['vi']}}</p>
+              <p class="m-3 text-xl"><span class="font-bold">Thời tiết trong ngày</span> - {{currentWeather[0].name}}</p>
               <div *ngFor="let itemValue of item; let vtri = index">
                 <hr *ngIf="itemValue.check">
                 <b *ngIf="itemValue.check" class="m-3">{{itemValue.value.dt * 1000 | date: 'fullDate'}}</b>
@@ -57,26 +47,37 @@
       </div>
       <div class="col-3 p-0 m-3">
         <p-card header="CHỈ SỐ CH.LƯỢNG KH.KHÍ">
-          <p class="m-0">
+          <p class="m-0"></p>
           <div class="grid">
-            <div class = "col-3">
-              <img style="height: 40px; width: 60px;" src="../../../assets/img/CLKK.png" alt="Biều đồ đo chất lượng k.khí">
+            <div class="col-3">
+              <img
+                style="height: 40px; width: 60px"
+                src="../../../assets/img/CLKK.png"
+                alt="Biều đồ đo chất lượng k.khí"
+              />
             </div>
-            <div class="col-9"> 
+            <div class="col-9">
               <b>Trung bình</b>
-              <p>Chất lượng không khí có thể chấp nhận được; 
-                tuy nhiên đối với một số chất gây ô nhiễm, 
-                có thể hơi có vấn đề về sức khỏe đối với một số rất ít những người nhạy cảm bất thường đối với ô nhiễm không khí.</p>
+              <p>
+                Chất lượng không khí có thể chấp nhận được; tuy nhiên đối với
+                một số chất gây ô nhiễm, có thể hơi có vấn đề về sức khỏe đối
+                với một số rất ít những người nhạy cảm bất thường đối với ô
+                nhiễm không khí.
+              </p>
             </div>
           </div>
         </p-card>
         <p-card header="Sức khỏe & Hoạt động" class="m-1 p-0">
-          <p class="m-0">
-          <div class="grid p-0" >
-            <div class = "col-3">
-              <img style="height: 40px; width: 60px;" src="../../../assets/img/du-bao.jpg" alt="Hoạt động">
+          <p class="m-0"></p>
+          <div class="grid p-0">
+            <div class="col-3">
+              <img
+                style="height: 40px; width: 60px"
+                src="../../../assets/img/du-bao.jpg"
+                alt="Hoạt động"
+              />
             </div>
-            <div class="col-9"> 
+            <div class="col-9">
               <b>Dự báo</b>
               <p>Thời tiết rất tốt để hoạt động thể dục ngoài trời...</p>
             </div>

@@ -1,8 +1,9 @@
 .body {
-    margin: 10px auto;
-    background-color:var(--surface-card);
-    border: 1px solid var(--surface-border);
-    padding: 2rem;
-    box-shadow: var(--card-shadow);
-    border-radius: 12px;
-  }
+  height: 98vh;
+  margin: 0px auto;
+  padding: 0;
+  background-color: var(--surface-card);
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--card-shadow);
+  border-radius: 12px;
+}

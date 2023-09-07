@@ -1,17 +1,17 @@
-<div style=" height: 100%;
-object-fit: cover;">
-  <div class="body m-10">
+<div>
+  <div class="body p-3">
     <div class="card">
       <p-table
         [value]="showAdmin"
         styleClass="p-datatable-gridlines"
-        [tableStyle]="{ 'min-width': '50rem' }"
         [paginator]="true"
         [rows]="10"
         [showCurrentPageReport]="true"
-        [tableStyle]="{ 'min-width': '50rem' }"
+        [scrollable]="true"
+        scrollHeight="70vh"
         currentPageReportTemplate="{first} đến {last} trong tổng {totalRecords} phần tử"
         [rowsPerPageOptions]="[10, 25, 50]"
+        [tableStyle]="{'min-width': '70vh'}"
       >
         <ng-template pTemplate="caption">
           <div class="grid">
@@ -20,7 +20,13 @@ object-fit: cover;">
               <div class="grid-nogutter">
                 <span class="p-input-icon-left">
                   <i class="pi pi-search"></i>
-                  <input type="text" class="p-inputtext-sm" pInputText [(ngModel)]="value" />
+                  <input
+                    type="text"
+                    class="p-inputtext-sm"
+                    pInputText
+                    [(ngModel)]="value"
+                    [style]="{'width': '30rem'}"
+                  />
                   <p-button
                     class="ml-1"
                     styleClass="p-button-success p-button-sm"
@@ -55,25 +61,28 @@ object-fit: cover;">
         </ng-template>
         <ng-template pTemplate="body" let-admin>
           <tr>
-            <td>{{ admin.id }}</td>
-            <td>{{ admin.username }}</td>
-            <td>
+            <td class="pt-2 pb-2">{{ admin.id }}</td>
+            <td class="pt-2 pb-2">{{ admin.username }}</td>
+            <td class="pt-2 pb-2">
               <p-button
                 icon="pi pi-eye"
                 styleClass="p-button-secondary p-button-sm"
                 (click)="showInformation(admin.id)"
+                [style]="{'height':'2rem', 'width':'2rem'}"
               ></p-button>
               <p-button
                 class="ml-2"
                 icon="pi pi-pencil"
                 styleClass="p-button-success p-button-sm"
                 (click)="showEdit(admin.id)"
+                [style]="{'height':'2rem', 'width':'2rem'}"
               ></p-button>
               <p-button
                 class="ml-2"
                 icon="pi pi-times"
                 styleClass="p-button-danger p-button-sm"
                 (click)="showDelete(admin.id)"
+                [style]="{'height':'2rem', 'width':'2rem'}"
               ></p-button>
             </td>
           </tr>
@@ -131,21 +140,33 @@ object-fit: cover;">
   [resizable]="false"
 >
   <div class="grid md:text-center">
-    <div class="col-7">Tài khoản : </div>
+    <div class="col-7">Tài khoản :</div>
     <div class="col-1">{{ account.username }}</div>
-    <div class="col-7">Mật khẩu : </div>
+    <div class="col-7">Mật khẩu :</div>
     <div class="col-1">{{ account.password }}</div>
     <p></p>
     <p></p>
   </div>
 </p-dialog>
 <p-toast></p-toast>
-<p-confirmDialog #cd  [style]="{ width: '35vw' }">
-    <ng-template pTemplate="header">
-        <h3>Xác nhận xóa</h3>
-    </ng-template>
-    <ng-template pTemplate="footer">
-        <button type="button" pButton icon="pi pi-times" label="Không" (click)="cd.reject()"></button>
-        <button type="button" pButton icon="pi pi-check" label="Có" (click)="cd.accept()"></button>
-    </ng-template>
+<p-confirmDialog #cd [style]="{ width: '35vw' }">
+  <ng-template pTemplate="header">
+    <h3>Xác nhận xóa</h3>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button
+      type="button"
+      pButton
+      icon="pi pi-times"
+      label="Không"
+      (click)="cd.reject()"
+    ></button>
+    <button
+      type="button"
+      pButton
+      icon="pi pi-check"
+      label="Có"
+      (click)="cd.accept()"
+    ></button>
+  </ng-template>
 </p-confirmDialog>

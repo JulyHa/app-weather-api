@@ -1,59 +1,40 @@
-<app-header></app-header>
-<div class="grid">
-<div class="lg:col-1"></div>
-<div class="lg:col-10 md:col-12 sm:col-12">
-  <div class="card">
-  <p-table
-    [value]="showCitys"
-    styleClass="p-datatable-gridlines"
-    [tableStyle]="{ 'min-width': '50rem' }"
-    [paginator]="true"
-    [rows]="5"
-    [showCurrentPageReport]="true"
-    [tableStyle]="{ 'min-width': '50rem' }"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [rowsPerPageOptions]="[10, 25, 50]"
-  >
-    <ng-template pTemplate="caption">
-      <div class="grid">
-        <div class="lg:col-9 md:col-4 sm:col-12">Thành phố</div>
-        <div class="lg:col-3 md:col-8 sm:col-12">
-          <div class="grid-nogutter">
-            <span class="p-input-icon-left ">
-                <i class="pi pi-search"></i>
-                <input type="text" pInputText [(ngModel)]="value" />
-                <p-button class="ml-1"  styleClass="p-button-success" icon="pi pi-search" (click)="btnSearch()"></p-button>
-                <p-button class="ml-1" styleClass="p-button-secondary" icon="pi pi-times" (click)="btnDelete()"></p-button>
-              </span>
+<div>
+  <div class="border-round-sm body-page1">
+    <div class="border-round-sm title-page1">
+      <p class="text-xl pt-1 pl-3">
+        <b> {{ currentWeather.name }} </b>
+      </p>
+    </div>
+
+    <div class="grid ml-2">
+      <div class="col-7">
+        <b class="text-7xl"
+          >{{ currentWeather.main.temp - 273.15 | number : "1.0-0" }}&deg;</b
+        >
+        <div>{{ currentWeather.dt * 1000 | date : "shortTime" }}</div>
+      </div>
+      <div class="col-5 h-8rem">
+        <div class="grid">
+          <div
+            class="col-12 p-0"
+            style="display: flex; justify-content: center; align-items: center"
+          >
+            <img
+              src="https://openweathermap.org/img/wn/{{
+                currentWeather.weather[0].icon
+              }}.png"
+              alt="Ảnh"
+              class="page1-img"
+            />
+          </div>
+          <div
+            class="col-12 p-0"
+            style="display: flex; justify-content: center; align-items: center"
+          >
+            <div>{{ currentWeather.weather[0].description | titlecase }}</div>
           </div>
         </div>
       </div>
-    </ng-template>
-    <ng-template pTemplate="header">
-      <tr>
-        <th>STT</th>
-        <th>Name</th>
-        <th>Country</th>
-        <th>Action</th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-citys>
-      <tr>
-        <td class="w-4rem">{{ citys.id }}</td>
-        <td>{{ citys.city }}</td>
-        <td>{{ citys.country }}</td>
-        <td class="w-5rem">
-          <p-button
-            [routerLink]="['item']"
-            [queryParams]="{ city: citys.name }"
-            icon="pi pi-eye"
-          ></p-button>
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
+    </div>
+  </div>
 </div>
-</div>
-<div class="lg:col-1"></div>
-</div>
-

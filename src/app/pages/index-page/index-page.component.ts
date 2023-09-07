@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { City } from 'src/app/model/city';
 import { Weather } from 'src/app/model/weather';
+import { CityService } from 'src/app/services/city.service';
 import { WeatherService } from 'src/app/services/weather.service';
 import { __values } from 'tslib';
 
@@ -10,22 +12,24 @@ import { __values } from 'tslib';
   styleUrls: ['./index-page.component.scss']
 })
 export class IndexPageComponent implements OnInit {
-  currentWeather: any;
+  currentWeather: any[] = [];
   local: any;
-  weatherHourly: any;
+  weatherHourly: any = [];
   item: Weather[] = [];
-  citySearch: string = '';
+  citys: City[] = [];
+  citySearch: string = 'Hà nội';
   lat: number;
   lon: number;
 
 
-  constructor(private weatherService: WeatherService, private route: ActivatedRoute) {
+  constructor(private weatherService: WeatherService, private route: ActivatedRoute, private cityService: CityService) {
   }
   ngOnInit(): void {
     // nhận params từ đường dẫn localhost:4200/frist/child-a?id=1
     this.route.queryParams.subscribe(params => {
-      this.citySearch = params['city'];
+      // this.citySearch = params['city'];
     });
+    this.citys = this.cityService.getAll();
     this.runApp();
   }
   async runApp() {
@@ -35,19 +39,27 @@ export class IndexPageComponent implements OnInit {
   }
 
   async changeWeatherUI() {
-    this.weatherService.getWeather(this.citySearch).subscribe(data => {
-      this.currentWeather = data;
-    });
+    for (let city of this.citys) {
+      let data = await this.weatherService.getWeather(city.city).toPromise();
+      this.currentWeather.push(data);
+    }
   }
+
+
+
+
   async getWeatherHourly() {
     try {
-      let data = await this.weatherService.getLatAndLon(this.citySearch).toPromise();
-      this.local = data;
-      this.lat = this.local[0].lat;
-      this.lon = this.local[0].lon;
+      // let data = await this.weatherService.getLatAndLon(this.citySearch).toPromise();
+      // this.local = data;
+      for (let current of this.currentWeather) {
+        this.lat = current.coord.lat;
+        this.lon = current.coord.lon;
+        let hourly = await this.weatherService.getWeatherHourly(this.lat, this.lon).toPromise();
+        this.weatherHourly.push(hourly);
+      }
 
-      this.weatherHourly = await this.weatherService.getWeatherHourly(this.lat, this.lon).toPromise();
-      this.checkDate();
+      // this.checkDate();
     } catch (err) {
       console.log(err);
 

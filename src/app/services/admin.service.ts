@@ -40,20 +40,21 @@ export class AdminService {
   getId(): number {
     return this.admins[this.admins.length - 1].id + 1 || 1;
   }
-  checkUsername(username: string): boolean {
+  checkUsername(id: number, username: string): boolean {
     for (let acc of this.admins) {
-      if (acc.username == username) {
+      if (acc.id != id && acc.username == username) {
         return true;
       }
     }
     return false;
   }
 
-  addAdmin(admin: Admin): boolean {
-    if (this.checkUsername(admin.username)) {
+  add(admin: Admin): boolean {  
+    admin.id = this.getId();
+    if (this.checkUsername(admin.id, admin.username)) {
       return false;
     }
-    admin.id = this.getId();
+  
     this.admins.push(admin);
     this.localStorage.setLocalStorage('admin', this.admins);
     return true;
@@ -67,10 +68,10 @@ export class AdminService {
     return this.admins.findIndex(admin => admin.id == id);
   }
 
-  editAdmin(id: number, newAdmin: Admin): boolean {
+  edit(id: number, newAdmin: Admin): boolean {
     console.log(newAdmin);
 
-    if (this.checkUsername(newAdmin.username)) {
+    if (this.checkUsername(id, newAdmin.username)) {
       return false;
     }
     let index = this.findIndexById(id);
@@ -83,7 +84,7 @@ export class AdminService {
     return true;
   }
 
-  deleteAdmin(id: number): boolean {
+  remove(id: number): boolean {
     let index = this.findIndexById(id);
     if (index < 0 || index > this.admins.length) {
       return false;
