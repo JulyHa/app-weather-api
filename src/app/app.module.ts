@@ -31,7 +31,8 @@ import { ManageCityComponent } from './components/manage-city/manage-city.compon
 import { PasswordModule } from 'primeng/password';
 import { ScrollerModule } from 'primeng/scroller';
 import { ImagePipeCustom } from './config/imagePipeCustom';
-import { TitleipeCustom } from './config/titlePipeCustom';
+import { TitlePipeCustom } from './config/titlePipeCustom';
+import { CityPipeCustom } from './config/cityPipeCustom';
 // Đăng ký locales tiếng Việt
 registerLocaleData(localeVi);
 @NgModule({
@@ -46,7 +47,8 @@ registerLocaleData(localeVi);
     ManageAdminComponent,
     ManageCityComponent,
     ImagePipeCustom,
-    TitleipeCustom,
+    TitlePipeCustom,
+    CityPipeCustom,
     
   ],
   imports: [

@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
-    name: 'titleipeCustom'
+    name: 'titlePipeCustom'
 })
-export class TitleipeCustom implements PipeTransform{
+export class TitlePipeCustom implements PipeTransform{
     transform(value: boolean): string {
         return value? 'Chỉnh sửa': 'Thêm mới';
       }
