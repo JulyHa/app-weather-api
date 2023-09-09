@@ -16,7 +16,6 @@ export class ManageAdminComponent implements OnInit {
   infor: boolean = false;
   showItem: boolean = false;
   isEdit: boolean;
-  nameEdit: string;
   account: Admin;
   value: string = '';
 
@@ -31,7 +30,6 @@ export class ManageAdminComponent implements OnInit {
   showDialog() {
     this.visible = true;
     this.isEdit = false;
-    this.nameEdit = 'Thêm người quản trị'
     this.account.username = '';
     this.account.password = '';
   }
@@ -58,7 +56,6 @@ export class ManageAdminComponent implements OnInit {
 
   showEdit(id: number) {
     this.visible = true;
-    this.nameEdit = 'Chỉnh sửa người quản trị';
     this.isEdit = true;
     let u = this.adminService.findById(id);
     this.account = {

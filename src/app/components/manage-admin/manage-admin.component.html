@@ -25,7 +25,9 @@
                     class="p-inputtext-sm"
                     pInputText
                     [(ngModel)]="value"
+                    placeholder="Tìm kiếm tài khoản..."
                     [style]="{'width': '30rem'}"
+                    (keyup.enter)="searchAdmin()"
                   />
                   <p-button
                     class="ml-1"
@@ -59,9 +61,9 @@
             <th class="w-13rem"></th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-admin>
+        <ng-template pTemplate="body" let-admin let-rowIndex="rowIndex">
           <tr>
-            <td class="pt-2 pb-2">{{ admin.id }}</td>
+            <td class="pt-2 pb-2">{{rowIndex+1 }}</td>
             <td class="pt-2 pb-2">{{ admin.username }}</td>
             <td class="pt-2 pb-2">
               <p-button
@@ -93,7 +95,7 @@
 </div>
 
 <p-dialog
-  [header]="nameEdit"
+  [header]="isEdit | titleipeCustom"
   [(visible)]="visible"
   [modal]="true"
   [style]="{ width: '25vw' }"

@@ -30,6 +30,8 @@ import { ManageAdminComponent } from './components/manage-admin/manage-admin.com
 import { ManageCityComponent } from './components/manage-city/manage-city.component';
 import { PasswordModule } from 'primeng/password';
 import { ScrollerModule } from 'primeng/scroller';
+import { ImagePipeCustom } from './config/imagePipeCustom';
+import { TitleipeCustom } from './config/titlePipeCustom';
 // Đăng ký locales tiếng Việt
 registerLocaleData(localeVi);
 @NgModule({
@@ -43,6 +45,8 @@ registerLocaleData(localeVi);
     HeaderComponent,
     ManageAdminComponent,
     ManageCityComponent,
+    ImagePipeCustom,
+    TitleipeCustom,
     
   ],
   imports: [

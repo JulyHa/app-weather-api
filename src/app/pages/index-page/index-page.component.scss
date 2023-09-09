@@ -1,7 +1,4 @@
 .main{
-    width: 100%;
-    margin: 0;
-    padding: 0;
     background-image: linear-gradient(to bottom,rgb(0,89,134),rgb(216,238,238)) !important;
 }
 .menu {
@@ -84,4 +81,10 @@
   
   .item-img{
     float: right;
+  }
+  .href_login{
+    color: rgb(0, 0, 0);
+  }
+  .href_login:hover{
+    color: rgb(255, 255, 255);
   }

@@ -11,7 +11,6 @@ import { CityService } from 'src/app/services/city.service';
 export class ManageCityComponent implements OnInit {
   citys: City[]
   city: City 
-  title: string
   visible: boolean;
   infor: boolean;
   isEdit: boolean;
@@ -27,8 +26,7 @@ export class ManageCityComponent implements OnInit {
     this.infor = false;
   }
   showAdd() {
-    this.city= new City
-    this.title = 'Thêm thành phố'
+    this.city= new City;
     this.visible = true;
     this.isEdit = false;
   }
@@ -54,7 +52,6 @@ export class ManageCityComponent implements OnInit {
   }
 
   showEdit(id: number) {
-    this.title = 'Sửa thành phố'
     this.visible = true;
     this.isEdit = true;
     let c =  this.cityService.findById(id);

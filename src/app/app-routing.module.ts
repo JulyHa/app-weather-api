@@ -5,14 +5,19 @@ import { IndexPageComponent } from './pages/index-page/index-page.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { ManageAdminComponent } from './components/manage-admin/manage-admin.component';
 import { ManageCityComponent } from './components/manage-city/manage-city.component';
-import { AuthGuard } from './config/AuthGuard';
 import { ItemPageComponent } from './pages/item-page/item-page.component';
+import { AuthGuard } from './config/authGuard';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   {
     path: 'manage', component: AdminComponent,
     children: [
+      {
+        path: '',
+        redirectTo: 'admin',
+        pathMatch: 'full'
+      },
       {
         path: 'admin',
         component: ManageAdminComponent,

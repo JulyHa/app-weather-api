@@ -24,8 +24,10 @@
                     type="text"
                     class="p-inputtext-sm"
                     pInputText
+                    placeholder="Tìm kiếm thành phố..."
                     [(ngModel)]="valueSearch"
                     [style]="{'width': '30rem'}"
+                    (keyup.enter)="search()"
                   />
                   <p-button
                     class="ml-1"
@@ -60,9 +62,9 @@
             <th class="w-13rem"></th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-city>
+        <ng-template pTemplate="body" let-city let-rowIndex="rowIndex">
           <tr>
-            <td class="pt-2 pb-2">{{ city.id }}</td>
+            <td class="pt-2 pb-2">{{ rowIndex +1}}</td>
             <td class="pt-2 pb-2">{{ city.city }}</td>
             <td class="pt-2 pb-2">{{ city.country }}</td>
             <td class="pt-2 pb-2">
@@ -95,7 +97,7 @@
 </div>
 
 <p-dialog
-  [header]="title"
+  [header]="isEdit | titleipeCustom"
   [(visible)]="visible"
   [modal]="true"
   [style]="{ width: '25vw' }"
@@ -143,9 +145,9 @@
 >
   <div class="grid md:text-center">
     <div class="col-7">Thành phố :</div>
-    <div class="col-2">{{ city.city }}</div>
+    <div class="col-3">{{ city.city }}</div>
     <div class="col-7">Quốc gia :</div>
-    <div class="col-2">{{ city.country }}</div>
+    <div class="col-3">{{ city.country }}</div>
     <p></p>
     <p></p>
   </div>

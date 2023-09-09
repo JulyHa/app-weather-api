@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Weather } from 'src/app/model/weather';
 import { WeatherService } from 'src/app/services/weather.service';
 
@@ -7,23 +8,42 @@ import { WeatherService } from 'src/app/services/weather.service';
   templateUrl: './item-page.component.html',
   styleUrls: ['./item-page.component.scss']
 })
-export class ItemPageComponent implements OnInit {
+export class ItemPageComponent implements OnInit, AfterViewInit {
   lat: number;
   lon: number;
   local: any;
+  current: any;
+  urlVideo: string = '../../../assets/mp4/Clear.mp4'
   hourly: Weather = new Weather;
-  item : any[];
+  itemValue : any[];
   city: string = 'Ha noi';
+  show: boolean=false;
 
-
-
-  constructor(private weatherService: WeatherService) { }
-
+  constructor(private weatherService: WeatherService, private route: ActivatedRoute) { }
+  ngAfterViewInit(){
+    this.getWeatherCurrent();
+  }
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.city = params['city'];
+    });
+    this.ngAfterViewInit();
+    // this.getWeatherCurrent();
     this.getWeatherHourly();
   }
+
+  getWeatherCurrent(){
+    this.weatherService.getWeather(this.city).subscribe(res => {
+      this.show = false;
+      this.current = res;    
+      this.urlVideo = '../../../assets/mp4/' + this.current.weather[0].main + '.mp4';
+      console.log(this.urlVideo);
+      this.show = true;
+    });
+  }
+
   toggleSubMenu(index: number) {
-    // this.hourly.show = !this.hourly.show;
+    this.itemValue[index].show = !this.itemValue[index].show;
 
   }
   async getWeatherHourly() {
@@ -44,13 +64,13 @@ export class ItemPageComponent implements OnInit {
   }
 
   checkDate() {
-    this.item = [];
+    this.itemValue = [];
     let day = new Date().getDate();
     for (let t of this.hourly.value.list) {
       let k: string = t.dt_txt;
       let nextDay = Number(k.slice(8, 10));
       if (day != nextDay) {
-        this.item.push({
+        this.itemValue.push({
           value: t,
           check: true,
           show: false
@@ -58,13 +78,15 @@ export class ItemPageComponent implements OnInit {
         day = nextDay;
       }
       else {
-        this.item.push({
+        this.itemValue.push({
           value: t,
           check: false,
           show: false
         })
       }
     }
-    this.item[0].check = true;
+    this.itemValue[0].check = true;
+    console.log(this.itemValue);
+    
   }
 }

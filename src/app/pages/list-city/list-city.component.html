@@ -6,7 +6,7 @@
       </p>
     </div>
 
-    <div class="grid ml-2">
+    <div class="grid ml-2" [routerLink]="['/item']"  [queryParams]="{city: currentWeather.name}">
       <div class="col-7">
         <b class="text-7xl"
           >{{ currentWeather.main.temp - 273.15 | number : "1.0-0" }}&deg;</b

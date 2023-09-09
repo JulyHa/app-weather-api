@@ -1,48 +1,9 @@
-<div class="main">
-  <!-- <app-header></app-header> -->
-
+<div class="main min-h-screen">
   <div class="body w-8">
     <div class="grid m-1">
       <div class="col-8 p-0">
         <div *ngFor="let weather of currentWeather">
-          <app-list-city
-            [currentWeather]="weather"
-          ></app-list-city>
-        </div>
-
-        <!-- <div>
-          <div class="border-round-sm  body-page1">
-              <div class="border-round-sm title-page1">
-                <p class="text-xl pt-1 pl-3" ><b>{{local[0].local_names['vi']}} - {{currentWeather.dt*1000 | date: 'medium'}}</b>
-              </div>
-            <div class="grid ml-2">
-              <div class="col-7 text-xl">
-                <b class="text-8xl">{{(currentWeather.main.temp - 273.15 | number: '1.0-0')}}&deg;</b>
-                <div>{{currentWeather.weather[0].description | titlecase}}</div>
-              </div>
-              <div class="col-5 h-13rem">
-                <img
-                  src="https://openweathermap.org/img/wn/{{currentWeather.weather[0].icon}}.png"
-                  alt="Ảnh"
-                  class="page1-img"
-                />
-              </div>
-            </div>
-          </div>
-        </div> -->
-
-        <div>
-          <div class="mt-3 border-1 border-500" style="background-color: white;" >
-            <div >
-              <p class="m-3 text-xl"><span class="font-bold">Thời tiết trong ngày</span> - {{currentWeather[0]?.name}}</p>
-              <div *ngFor="let itemValue of item; let vtri = index">
-                <hr *ngIf="itemValue.check">
-                <b *ngIf="itemValue.check" class="m-3">{{itemValue.value.dt * 1000 | date: 'fullDate'}}</b>
-                <app-item-page [current] = 'currentWeather[0]' [hourly] = 'itemValue' [index] = 'index'></app-item-page>
-              </div>
-              
-            </div>
-          </div>
+          <app-list-city [currentWeather]="weather"></app-list-city>
         </div>
       </div>
       <div class="col-3 p-0 m-3">
@@ -83,6 +44,15 @@
             </div>
           </div>
         </p-card>
+        <div class="text-center" style="margin-top: -5px">
+          <p-button
+            styleClass="p-button-raised p-button-info p-button-sm"
+            [style]="{ width: '10rem', 'justify-content': 'center' }"
+            [routerLink]="['/login']"
+          >
+            Đăng nhập</p-button
+          >
+        </div>
       </div>
     </div>
   </div>
